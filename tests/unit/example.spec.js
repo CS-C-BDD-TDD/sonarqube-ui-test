@@ -1,12 +1,11 @@
+import { QPage, QToolbar, QInput, QCard, QCardMedia, QCardTitle } from 'quasar';
 import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+import LogIn from '@/components/LogIn.vue'
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    })
+describe('LogIn.vue', () => {
+  it('render login screen', () => {
+    const msg = 'User ID'
+    const wrapper = shallowMount(LogIn)
     expect(wrapper.text()).toMatch(msg)
   })
 })
