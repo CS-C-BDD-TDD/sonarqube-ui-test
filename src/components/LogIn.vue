@@ -13,7 +13,7 @@
           <q-card-main>
             <form>
               <q-field>
-                <q-input v-model="text" float-label="User ID" required></q-input>
+                <q-input v-model="username" type="text" float-label="User ID" required></q-input>
               </q-field>
               <q-field>
                 <q-input v-model="password" type="password" float-label="Password"
