@@ -1,4 +1,4 @@
-import{ shallowMount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Router from 'vue-router'
 import Quasar from 'quasar'
 import LogIn from './components/LogIn.vue'

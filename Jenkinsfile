@@ -36,16 +36,32 @@ pipeline {
         }
         stage('Quality And Security') {
             parallel {
-//                stage('Dependency Check') {
-//                    steps {
-//                        sh 'npm audit'
-//                    }
-//                }
+                stage('Dependency Check') {
+                    steps {
+                        echo 'npm audit'
+                    }
+                }
                 stage('Compile & Test') {
                     steps {
                         sh 'npm install'
                         sh 'npm run test:unit'
                         sh 'npm run build'
+                        publishHTML([
+                            reportDir             : './',
+                            reportFiles           : 'test-report.html',
+                            reportName            : 'Jest Unit Test Report',
+                            keepAll               : true,
+                            alwaysLinkToLastBuild : true,
+                            allowMissing          : true
+                        ])
+                        publishHTML([
+                            reportDir             : 'coverage/lcov-report',
+                            reportFiles           : 'index.html',
+                            reportName            : 'Jest Test Coverage Report',
+                            keepAll               : true,
+                            alwaysLinkToLastBuild : true,
+                            allowMissing          : true
+                        ])
                     }
                 }
                 stage('Ensure SonarQube Webhook is configured') {
