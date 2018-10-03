@@ -18,15 +18,6 @@
               <q-field>
                 <q-input v-model="password" type="password" float-label="Password"
                 required
-                :after="[
-                  {
-                    icon: 'warning',
-                    error: true,
-                    handler () {
-                      // do something...
-                    }
-                  }
-                ]"
                 >
                 </q-input>
               </q-field>

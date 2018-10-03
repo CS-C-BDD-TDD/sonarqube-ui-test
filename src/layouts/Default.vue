@@ -24,7 +24,7 @@ export default {
   name: 'LayoutDefault',
   data() {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
+      // leftDrawerOpen: this.$q.platform.is.desktop,
     };
   },
 };
