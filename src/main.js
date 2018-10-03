@@ -1,18 +1,19 @@
-import Vue from 'vue'
-import App from './App.vue'
-
-import './styles/quasar.styl'
-import 'quasar-framework/dist/quasar.ie.polyfills'
-import iconSet from 'quasar-framework/icons/fontawesome'
-import 'quasar-extras/fontawesome'
-import Quasar from 'quasar'
+import Vue from 'vue';
+import Quasar from 'quasar';
+import iconSet from 'quasar-framework/icons/fontawesome';
+import 'quasar-extras/fontawesome';
+import './registerServiceWorker';
+import './styles/quasar.styl';
+import App from './App.vue';
+import router from './router';
 
 Vue.use(Quasar, {
-  config: {}, iconSet: iconSet
- })
+  config: {}, iconSet,
+});
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App)
-}).$mount('#app')
+  router,
+  render: h => h(App),
+}).$mount('#app');

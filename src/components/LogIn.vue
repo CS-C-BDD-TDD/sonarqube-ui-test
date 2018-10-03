@@ -13,20 +13,11 @@
           <q-card-main>
             <form>
               <q-field>
-                <q-input v-model="text" float-label="User ID" required></q-input>
+                <q-input v-model="username" type="text" float-label="User ID" required></q-input>
               </q-field>
               <q-field>
-                <q-input v-model="password" type="password" float-label="Password" 
+                <q-input v-model="password" type="password" float-label="Password"
                 required
-                :after="[
-                  {
-                    icon: 'warning',
-                    error: true,
-                    handler () {
-                      // do something...
-                    }
-                  }
-                ]"
                 >
                 </q-input>
               </q-field>
@@ -34,7 +25,8 @@
           </q-card-main>
 
           <q-card-actions>
-            <q-btn class="full-width" type="submit" color="primary" label="Sign In" @click="login" />
+            <q-btn class="full-width" type="submit"
+              color="primary" label="Sign In" @click="login" />
           </q-card-actions>
         </q-card>
     </div>
@@ -47,6 +39,6 @@
 
 <script>
 export default {
-  name: 'Login'
-}
+  name: 'LogIn',
+};
 </script>
