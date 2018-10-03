@@ -9,10 +9,10 @@
 
 <script>
 export default {
-  name: 'Landing',
+  name: 'HumanReview',
   data() {
     return {
-      message: 'This page is currently under construction!',
+      message: 'HumanReview page is currently under construction!',
       styleObject: {
         fontSize: '50px',
         color: '#ffffff',
