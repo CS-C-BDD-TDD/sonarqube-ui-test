@@ -49,7 +49,7 @@ pipeline {
                         publishHTML([
                             reportDir             : './',
                             reportFiles           : 'test-report.html',
-                            reportName            : 'Jest Unit Test Report',
+                            reportTitles          : 'Jest Unit Test Report',
                             keepAll               : true,
                             alwaysLinkToLastBuild : true,
                             allowMissing          : true
@@ -57,7 +57,7 @@ pipeline {
                         publishHTML([
                             reportDir             : 'coverage/lcov-report',
                             reportFiles           : 'index.html',
-                            reportName            : 'Jest Test Coverage Report',
+                            reportTitles          : 'Jest Test Coverage Report',
                             keepAll               : true,
                             alwaysLinkToLastBuild : true,
                             allowMissing          : true
