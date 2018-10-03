@@ -46,18 +46,18 @@ pipeline {
                         sh 'npm install'
                         sh 'npm run test:unit'
                         sh 'npm run build'
-                        publishHTML([
+                        publishHTML(target: [
                             reportDir             : './',
                             reportFiles           : 'test-report.html',
-                            reportTitles          : 'Jest Unit Test Report',
+                            reportName            : 'Jest Unit Test Report',
                             keepAll               : true,
                             alwaysLinkToLastBuild : true,
                             allowMissing          : true
                         ])
-                        publishHTML([
+                        publishHTML(target: [
                             reportDir             : 'coverage/lcov-report',
                             reportFiles           : 'index.html',
-                            reportTitles          : 'Jest Test Coverage Report',
+                            reportName            : 'Jest Test Coverage Report',
                             keepAll               : true,
                             alwaysLinkToLastBuild : true,
                             allowMissing          : true
