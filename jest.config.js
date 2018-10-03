@@ -30,6 +30,12 @@ module.exports =
       'json',
       'vue'
     ],
+    reporters: [
+      "default",
+      ["./node_modules/jest-html-reporter", {
+        "pageTitle": "Test Report"
+      }]
+    ],
     moduleNameMapper: {
       'components/([^\\.]*).vue$': '<rootDir>/src/components/$1.vue',
       '^vue$': 'vue/dist/vue.common.js',
