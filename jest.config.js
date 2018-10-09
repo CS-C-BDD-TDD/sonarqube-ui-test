@@ -36,6 +36,9 @@ module.exports =
         "pageTitle": "Test Report"
       }]
     ],
+    testMatch: [
+      "**/*.steps.js"
+    ],
     moduleNameMapper: {
       'components/([^\\.]*).vue$': '<rootDir>/src/components/$1.vue',
       '^vue$': 'vue/dist/vue.common.js',
@@ -59,4 +62,5 @@ module.exports =
     snapshotSerializers: [
       '<rootDir>/node_modules/jest-serializer-vue'
     ]
+    
   }
