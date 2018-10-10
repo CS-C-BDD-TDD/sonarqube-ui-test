@@ -6,7 +6,8 @@ import './registerServiceWorker';
 import './styles/quasar.styl';
 import App from './App.vue';
 import router from './router';
-import AXIOS from 'axios';
+
+import store from './store';
 
 Vue.use(Quasar, {
   config: {}, iconSet,
@@ -17,9 +18,5 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   render: h => h(App),
-	data: {
-    // declare message with an empty value
-    username: '',
-    password: '',
-  },
+  store,
 }).$mount('#app');
