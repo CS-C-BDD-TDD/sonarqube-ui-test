@@ -31,12 +31,12 @@ pipeline {
             parallel {
                 stage('Dependency Check') {
                     steps {
+                        sh 'npm --registry http://nexus-labs-ci-cd.apps.domino.rht-labs.com/repository/npm-group/ install'
                         echo 'npm audit'
                     }
                 }
                 stage('Compile & Test') {
                     steps {
-                        sh 'npm install'
                         sh 'npm run test:unit'
                         sh 'npm run build'
                         publishHTML(target: [
