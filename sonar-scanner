@@ -46,7 +46,7 @@ if [ ! -f ${DIR}/${jar} ]; then
   if [[ ${ver} =~ ^.*-SNAPSHOT$ ]]; then
       repo="central::default::https://oss.sonatype.org/content/repositories/snapshots"
   fi
-  mvn org.apache.maven.plugins:maven-dependency-plugin:2.9:get \
+  ./mvnw org.apache.maven.plugins:maven-dependency-plugin:2.9:get \
     -DremoteRepositories=${repo} \
     -Dartifact=${groupid}:${artifactid}:${ver} \
     -Dtransitive=false \
