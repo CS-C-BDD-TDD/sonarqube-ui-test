@@ -10,6 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "human_review_api_client": "^1.0.0",
     "quasar-extras": "^2.0.4",
     "quasar-framework": "^0.17.0",
     "register-service-worker": "^1.0.0",
