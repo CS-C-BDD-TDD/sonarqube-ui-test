@@ -20,7 +20,7 @@
 ####
 set -o pipefail
 
-for cmd in {mvn,python,curl}; do
+for cmd in {./mvnw,python,curl}; do
   if ! command -v ${cmd} > /dev/null; then
   >&2 echo "This script requires '${cmd}' to be installed."
     exit 1
