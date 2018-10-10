@@ -36,7 +36,7 @@ pipeline {
                 }
                 stage('Compile & Test') {
                     steps {
-                        sh 'npm install'
+                        sh 'npm --registry http://nexus-labs-ci-cd.apps.domino.rht-labs.com/repository/npm-group/ install'
                         sh 'npm run test:unit'
                         sh 'npm run build'
                         publishHTML(target: [
