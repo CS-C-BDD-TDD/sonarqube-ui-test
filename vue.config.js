@@ -10,7 +10,7 @@ module.exports = {
     proxy: {
       '/api/v1': {
         //target: 'http://localhost:8080',
-		target: 'http://human-review-backend-labs-dev.apps.domino.rht-labs.com',
+		target: 'http://10.130.0.203:8080',
         changeOrigin: true,
       },
     },
