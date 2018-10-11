@@ -21,15 +21,19 @@ export default new Vuex.Store({
 
   actions: {
     getLoginToken({ commit }, input) {
-      const urlPathVars = `/api/v1/user?username=${input.username}&password=${input.password}`;
-      const config = {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      };
-      axios.put(urlPathVars, null, config).then(result => commit('updateToken', result.data))
-        .catch(console.error);
-    },
-
-  },
+      //   const urlPathVars = `/api/v1/user?username=${input.username}&password=${input.password}`;
+        const config = {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+        const authCredentials = {
+          username: `${input.username}`,
+          password: `${input.password}`,
+        };
+  
+        axios.put('/api/v1/user', authCredentials, config).then(result => commit('updateToken', result.data))
+          .catch(console.error);
+      },
+    }
 });
