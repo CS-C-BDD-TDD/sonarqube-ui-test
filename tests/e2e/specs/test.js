@@ -16,7 +16,7 @@ module.exports = {
       .url(process.env.VUE_DEV_SERVER_URL)
       .waitForElementVisible('#app', 5000)
       .setValue('input[type=username].col.q-input-target.q-no-input-spinner.ellipsis', 'dphillips')
-      .assert.value('input[type=text].col.q-input-target.q-no-input-spinner.ellipsis', 'dphillips')
+      .assert.value('input[type=username].col.q-input-target.q-no-input-spinner.ellipsis', 'dphillips')
       .end();
   }
 };
