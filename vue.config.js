@@ -9,7 +9,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api/v1/user': {
-		    target: 'http://human-review-backend-labs-test.apps.domino.rht-labs.com',
+		    target: 'http://human-review-backend-labs-test.apps.domino.rht-labs.com:8080',
         changeOrigin: true,
       },
     },
