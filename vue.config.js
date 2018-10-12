@@ -8,9 +8,8 @@ module.exports = {
 
   devServer: {
     proxy: {
-      '/api/v1': {
-        //target: 'http://localhost:8080',
-		target: 'http://10.130.0.203:8080',
+      '/api/v1/user': {
+		    target: 'http://human-review-backend-labs-test.apps.domino.rht-labs.com:8080',
         changeOrigin: true,
       },
     },
