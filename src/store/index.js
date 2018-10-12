@@ -28,8 +28,8 @@ export default new Vuex.Store({
           },
         };
         const authCredentials = {
-          username: `${input.username}`,
-          password: `${input.password}`,
+          "username": `${input.username}`,
+          "password": `${input.password}`,
         };
   
         axios.put('/api/v1/user', authCredentials, config).then(result => commit('updateToken', result.data))
