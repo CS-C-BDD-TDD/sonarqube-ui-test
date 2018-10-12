@@ -12,10 +12,10 @@ module.exports =
     coverageReporters: ["json", "lcov", "text", "html"],
     coverageThreshold: {
       'global': {
-        'branches': 50,
-        'functions': 50,
-        'lines': 50,
-        'statements': 50
+        'branches': 10,
+        'functions': 0,
+        'lines': 10,
+        'statements': 10
       }
     },
     testMatch: [
@@ -59,4 +59,5 @@ module.exports =
     snapshotSerializers: [
       '<rootDir>/node_modules/jest-serializer-vue'
     ]
+    
   }
