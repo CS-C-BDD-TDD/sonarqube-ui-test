@@ -66,7 +66,7 @@ export default {
     login() {
       const enteredUsername = this.input.username;
       const enteredPassword = this.input.password;
-      const logmsg = `Logging in with ${enteredUsername} ${enteredPassword}`;
+      const logmsg = 'Logging in with ${enteredUsername} ${enteredPassword}';
       console.log(logmsg);
 
       this.$store.dispatch('getLoginToken', Object.assign({}, this.input))
