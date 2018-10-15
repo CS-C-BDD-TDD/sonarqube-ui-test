@@ -23,11 +23,11 @@ describe('Test LogIn.vue', () => {
 
   it('Loads the LogIn View', () => {
     wrapper = shallowMount(LogIn, { localVue });
-    expect(wrapper.find('input[type=text')).toBeDefined();
+    expect(wrapper.find('input[type=text]')).toBeDefined();
   });
 
   it('Loads the LogIn View', () => {
     wrapper = shallowMount(LogIn, { localVue });
-    expect(wrapper.find('input[type=password')).toBeDefined();
+    expect(wrapper.find('input[type=password]')).toBeDefined();
   });
 });
