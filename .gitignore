@@ -3,6 +3,7 @@ node_modules
 /dist
 /coverage
 /tests/e2e/reports/*
+*report.html
 
 # local env files
 .env.local

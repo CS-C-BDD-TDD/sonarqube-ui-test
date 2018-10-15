@@ -18,5 +18,13 @@ module.exports = {
       .setValue('input[type=text].col.q-input-target.q-no-input-spinner.ellipsis', 'dphillips')
       .assert.value('input[type=text].col.q-input-target.q-no-input-spinner.ellipsis', 'dphillips')
       .end();
+  },
+  'As a user, I need to be able to enter a password into the password field': (browser) => {
+    browser
+      .url(process.env.VUE_DEV_SERVER_URL)
+      .waitForElementVisible('#app', 5000)
+      .setValue('input[type=password].col.q-input-target.q-no-input-spinner.ellipsis', 'pass1234')
+      .assert.value('input[type=password].col.q-input-target.q-no-input-spinner.ellipsis', 'pass1234')
+      .end();
   }
 };
