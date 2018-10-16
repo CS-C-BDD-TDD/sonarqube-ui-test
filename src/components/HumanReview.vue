@@ -6,17 +6,18 @@
     row-key="id"
   >
   <q-tr slot="body" slot-scope="props" :props="props">
-    <q-td key="id" :props="props">{{ props.row.stixId }}</q-td>
-    <q-td key="date" :props="props">{{ props.row.actionDate }}</q-td>
-    <q-td key="type" :props="props">{{ props.row.objectType }}</q-td>
-    <q-td key="field" :props="props">{{ props.row.field }}</q-td>
+    <q-td key="id" :props="props">{{ pendingList[0].stix_id }}</q-td>
+    <q-td key="date" :props="props">{{ pendingList[0].date }}</q-td>
+    <q-td key="type" :props="props">{{ pendingList[0].object_type }}</q-td>
+    <q-td key="field" :props="props">{{ pendingList[0].field_name }}</q-td>
     <q-td key="value" :props="props">
       {{ props.row.value }}
       <q-popup-edit v-model="props.row.value">
         <q-input v-model="props.row.value" />
     </q-popup-edit>
     </q-td>
-    <q-td key="status" :props="props">{{ props.row.status }}</q-td>
+
+    <q-td key="status" :props="props">{{ pendingList[0].status }}</q-td>
     <q-td key="action" :props="props">
       {{ props.row.actions }}
       <q-select v-model="select" float-label="Select Action" :options="selectOptions"/>
@@ -28,6 +29,15 @@
 
 <script>
 export default {
+  created() {
+    console.log('Human review component is created');
+    const logmsg = 'get HR pending fields';
+    console.log(logmsg);
+
+    this.$store.dispatch('getHRPending', Object.assign({}, this.input));
+    console.log('completed loading pending ....');
+  },
+
   name: 'humanreview',
   data: () => ({
       selectOptions: [
@@ -36,6 +46,7 @@ export default {
         { label: 'Redact Field', value: '3' }
       ],
     columns: [
+
       { name: 'id', required: true, label: 'Stix Id', align: 'left', field: 'stixId', sortable: true, style: 'width: 10px' },
       { name: 'date', label: 'Action Date', align: 'left', field: 'actionDate', sortable: true, style: 'width: 20px' },
       { name: 'type', label: 'Object Type', align: 'left', field: 'objectType', sortable: true, style: 'width: 20px' },
@@ -51,7 +62,24 @@ export default {
       { stixId: '2', actionDate: '09/18/2018', objectType: 'Indicator', field: 'Title', value: 'I contain a SSN: 123-45-6789', status: 'New', groupAction: 'Disseminate' },
       { stixId: '2', actionDate: '09/18/2018', objectType: 'Indicator', field: 'Description', value: '123 Massachusetts Ave, NW, Washington DC', status: 'New', groupAction: 'Disseminate' },
     ],
-    //separator: 'horizontal'
-  })
-}
+    // separator: 'horizontal'
+  }),
+
+  computed: {
+    pendingList() {
+      return this.$store.state.pendingList;
+    },
+  },
+
+  methods: {
+    getPending() {
+      const logmsg = 'get HR pending fields';
+      console.log(logmsg);
+
+      this.$store.dispatch('getHRPending', Object.assign({}, this.input))
+        .then(() => this.$router.push('/humanreview'));
+    },
+  },
+
+};
 </script>
