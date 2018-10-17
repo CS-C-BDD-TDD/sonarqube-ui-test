@@ -13,7 +13,8 @@
         <q-td key="status">{{ status }}</q-td>
         <q-td key="action">
             {{ actions }}
-            <q-select v-model="select" float-label="Select Action" :options="selectOptions" @change="updateAction"/>
+            <q-select v-model="select" float-label="Select Action" 
+                      :options="selectOptions" @change="updateAction"/>
         </q-td>
     </q-tr>
 </template>

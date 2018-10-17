@@ -1,5 +1,3 @@
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 <template>
     <div class="window-width row justify-center items-start">
         <q-card class="bg-white">
@@ -23,7 +21,7 @@
 
           <q-card-actions>
             <q-btn class="full-width" type="submit"
-              color="primary" label="Sign In" @click="login()" />
+              color="primary" label="Sign In" @click="login" />
           </q-card-actions>
         </q-card>
     </div>
@@ -44,6 +42,9 @@ export default {
   },
 
   methods: {
+    login: function(val, initVal) {
+      this.$emit("submitLogin", { username: this.username, password: this.password });
+    }
   },
 };
 </script>
