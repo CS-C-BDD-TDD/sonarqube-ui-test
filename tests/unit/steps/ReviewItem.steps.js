@@ -1,11 +1,12 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 import Quasar from "quasar-framework";
 import { mount, createLocalVue } from "@vue/test-utils";
-import ReviewItem from "src/components/ReviewItem.vue";
+import ReviewItem from "@/components/ReviewItem.vue";
 import iconSet from "quasar-framework/icons/fontawesome";
 import "quasar-extras/fontawesome";
 
 const feature = loadFeature("tests/unit/features/ReviewItem.feature");
+const TEST_VALUE_INPUT = "This is my test value";
 
 defineFeature(feature, test => {
   let localVue;
@@ -26,16 +27,15 @@ defineFeature(feature, test => {
     stixId: "1",
     actionDate: "09/15/2018",
     objectType: "Indicator",
-    field: "Title",
-    value: "I contain a SSN",
-    status: "New"
+    fieldName: "Title",
+    fieldValue: "I contain a SSN",
+    status: "New",
+    action: "Confirm Risk"
   };
 
   const givenIHaveDataForAnReviewItem = given => {
     given("data for an individual review item", () => {
-      propData = {
-        TEST_DATA
-      };
+      propData = TEST_DATA;
     });
   };
 
@@ -44,7 +44,7 @@ defineFeature(feature, test => {
    */
   const whenIRendertheReviewItemComponent = when => {
     when("I render the review item component", () => {
-      wrapper = mount(ReviewItem, propData);
+      wrapper = mount(ReviewItem, { propsData: propData });
     });
   };
 
@@ -63,44 +63,38 @@ defineFeature(feature, test => {
     // });
 
     then("I should see a Stix id", () => {
-      expect(wrapper.find("tr")).toBeTruthy();
-      let tr = wrapper.find("tr");
-      expect(tr.find("td").element).toBeTruthy();
-      let td = wrapper.find("td");
-      expect(td.contains(TEST_DATA.stixId));
-    });
+      let td = wrapper.find("td:nth-child(1)");
+      expect(td.html()).toContain(TEST_DATA.stixId);
+    });  
 
     then("I should see an Action Date", () => {
-      let element = wrapper.find("tr").findAll("td");
-      expect(element[1].contains(TEST_DATA.actionDate));
+      let td = wrapper.find("td:nth-child(2)");
+      expect(td.html()).toContain(TEST_DATA.actionDate);
     });
 
     then("I should see an Object Type", () => {
-      let element = wrapper.find("tr").findAll("td");
-      expect(element[2].contains(TEST_DATA.objectType));
+      let td = wrapper.find("td:nth-child(3)");
+      expect(td.html()).toContain(TEST_DATA.objectType);
     });
 
     then("I should see a Field", () => {
-      let element = wrapper.find("tr").findAll("td");
-      expect(element[3].contains(TEST_DATA.field));
+      let td = wrapper.find("td:nth-child(4)");
+      expect(td.html()).toContain(TEST_DATA.fieldName);
     });
 
     then("I should see a Value as a Popup Edit component", () => {
-      let element = wrapper.find("tr").findAll("td");
-      expect(element[4].contains(TEST_DATA.value));
+      let td = wrapper.find("td:nth-child(5)");
+      expect(td.html()).toContain(TEST_DATA.fieldValue);
     });
 
     then("I should see a Status", () => {
-      let element = wrapper.find("tr").findAll("td");
-      expect(element[5].contains(TEST_DATA.value));
+      let td = wrapper.find("td:nth-child(6)");
+      expect(td.html()).toContain(TEST_DATA.status);
     });
 
     then("I should see an Action Combo box", () => {
-      let element = wrapper
-        .find("tr.td")
-        // .findAll("td")
-        .find("div.q-input-target.ellipsis");
-      expect(element[6].contains(TEST_DATA.value));
+      let select = wrapper.find("div.q-input-target.ellipsis");
+      expect(select.html()).toContain(TEST_DATA.value);
     });
   });
 
@@ -113,20 +107,26 @@ defineFeature(feature, test => {
     whenIRendertheReviewItemComponent(when);
 
     when("I select the value", () => {
-      expect(
-        wrapper
-          .find("tr")
-          .find("td.text-left.cursor-pointer")
-          .contains(TEST_DATA.value)
-      );
+      const valueField = wrapper.find("td.cursor-pointer");
+      valueField.trigger("click");
     });
 
     when("I change the value", () => {
-      wrapper.setValue("tr.td.text-left.cursor-pointer", "Mark Facemire");
+      const inputField = wrapper.find("input.q-input-target.q-no-input-spinner.ellipsis");
+      inputField.setValue(TEST_VALUE_INPUT);
+    });
+
+    when(/^I click Set$/, () => {
+      const setButton = wrapper.find("button.q-btn:nth-child(2)");
+      setButton.trigger("click");
     });
 
     then("the underlying data object should be updated", () => {
-      expect(wrapper.vm.$data.value.toBe("Mark Facemire"));
+      let eventData = TEST_DATA;
+      eventData.fieldValue = TEST_VALUE_INPUT;
+      expect(wrapper.emitted("fieldValueUpdate")).toBeDefined();
+      expect(wrapper.emitted("fieldValueUpdate").length).toEqual(1);
+      expect(wrapper.emitted("fieldValueUpdate")[0][0]).toEqual(eventData);
     });
   });
 });
