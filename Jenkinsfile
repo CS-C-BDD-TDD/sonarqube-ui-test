@@ -88,31 +88,31 @@ pipeline {
                 }
             }
         }
-#        stage ('Twistlock scan') { 
-#        twistlockScan ca: '',
-#                    cert: '',
-#                    compliancePolicy: 'critical',
-#                    dockerAddress: 'unix:///var/run/docker.sock',
-#                    gracePeriodDays: 0,
-#                    ignoreImageBuildTime: true,
-#                    image: 'nginx:stable-alpine',
-#                    key: '',
-#                    logLevel: 'true',
-#                    policy: 'warn',
-#                    requirePackageUpdate: false,
-#                    timeout: 10
-#    }
-#
-#        stage ('Twistlock publish') {
-#        twistlockPublish ca: '',
-#                    cert: '',
-#                    dockerAddress: 'unix:///var/run/docker.sock',
-#                    ignoreImageBuildTime: true,
-#                    image: 'nginx:stable-alpine',
-#                    key: '',
-#                    logLevel: 'true',
-#                    timeout: 10
-#    }
+        stage ('Twistlock scan') { 
+        twistlockScan ca: '',
+                    cert: '',
+                    compliancePolicy: 'warn',
+                    dockerAddress: 'unix:///var/run/docker.sock',
+                    gracePeriodDays: 0,
+                    ignoreImageBuildTime: true,
+                    image: 'nginx:stable-alpine',
+                    key: '',
+                    logLevel: 'true',
+                    policy: 'warn',
+                    requirePackageUpdate: false,
+                    timeout: 10
+    }
+
+        stage ('Twistlock publish') {
+        twistlockPublish ca: '',
+                    cert: '',
+                    dockerAddress: 'unix:///var/run/docker.sock',
+                    ignoreImageBuildTime: true,
+                    image: 'nginx:stable-alpine',
+                    key: '',
+                    logLevel: 'true',
+                    timeout: 10
+    }
         stage('Build Image') {
             steps {
                 script {
