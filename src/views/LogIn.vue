@@ -20,8 +20,8 @@
           </q-card-main>
 
           <q-card-actions>
-            <q-btn class="full-width" type="submit"
-              color="primary" label="Sign In" @click="login" />
+            <!-- <a href="">Sign In</a>  -->
+            <q-btn class="full-width" color="primary" label="Sign In" @click="login" />
           </q-card-actions>
         </q-card>
     </div>
@@ -42,7 +42,7 @@ export default {
   },
 
   methods: {
-    login: function(val, initVal) {
+    login: function() {
       this.$emit("submitLogin", { username: this.username, password: this.password });
     }
   },

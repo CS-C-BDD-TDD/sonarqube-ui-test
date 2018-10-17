@@ -46,8 +46,8 @@ defineFeature(feature, test => {
     });
 
     when(/^I click the SignIn button$/, () => {
-      expect(wrapper.find('div.q-btn-inner').length).toEqual(1);
-      wrapper.find('button[type=submit]').trigger('click');
+      // expect(wrapper.find('div.q-btn-inner').length).toEqual(1);
+      wrapper.find('button.q-btn').trigger('click');
     });
 
     then(/^I expect the username value to be set correctly$/, () => {
