@@ -7,5 +7,7 @@ Scenario: Login page is correctly rendered
   When I load the default Vue JS page
   And I input a username
   And I input a password
+  And I click the SignIn button
   Then I expect the username value to be set correctly
   And I expect the password value to be set correctly
+  And the system sends the credentials

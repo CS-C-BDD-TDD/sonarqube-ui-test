@@ -14,6 +14,7 @@ defineFeature(feature, test => {
 
     const USERNAME = 'someUsername';
     const PASSWORD = 'somePassword';
+    const EXPECTED_CREDENTIALS = { username: USERNAME, password: PASSWORD };
 
     given(/^I am a user with a web browser$/, () => {
       wrapper = mount(LogIn);
@@ -31,6 +32,10 @@ defineFeature(feature, test => {
       wrapper.find('input[type=password]').setValue(PASSWORD);
     });
 
+    when(/^I click the SignIn button$/, () => {
+      wrapper.find('button.q-btn').trigger('click');
+    });
+
     then(/^I expect the username value to be set correctly$/, () => {
         expect(wrapper.vm.$data).toBeDefined();
         expect(wrapper.vm.$data.username).toBeDefined();
@@ -39,6 +44,12 @@ defineFeature(feature, test => {
 
     then(/^I expect the password value to be set correctly$/, () => {
         expect(wrapper.vm.$data.password).toBe(PASSWORD);
+    });
+
+    then(/^the system sends the credentials$/, () => {
+      expect(wrapper.emitted('submitted')).toBeDefined();
+      expect(wrapper.emitted('submitted').length).toEqual(1);
+      expect(wrapper.emitted('submitted')[0][0]).toEqual(EXPECTED_CREDENTIALS);     
     });
   });
 });
