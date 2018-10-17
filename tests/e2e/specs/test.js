@@ -26,5 +26,5 @@ module.exports = {
       .setValue('input[type=password].col.q-input-target.q-no-input-spinner.ellipsis', 'pass1234')
       .assert.value('input[type=password].col.q-input-target.q-no-input-spinner.ellipsis', 'pass1234')
       .end();
-  }
+  },
 };

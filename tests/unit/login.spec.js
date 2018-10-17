@@ -1,12 +1,13 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
-import Router from 'vue-router'
-import Quasar from 'quasar'
-import LogIn from './components/LogIn.vue'
-import Default from './layouts/Default.vue'
+import { shallowMount, createLocalVue } from '@vue/test-utils';
+import Router from 'vue-router';
+import Quasar from 'quasar';
+import LogIn from './components/LogIn.vue';
+import Default from './layouts/Default.vue';
 import iconSet from 'quasar-framework/icons/fontawesome';
 
 describe('Test LogIn.vue', () => {
-  let localVue, wrapper;
+  let localVue,
+    wrapper;
 
   beforeEach(() => {
     localVue = createLocalVue();
@@ -18,7 +19,7 @@ describe('Test LogIn.vue', () => {
 
   it('Loads the Default view', () => {
     wrapper = shallowMount(Default, { localVue });
-    expect(wrapper.html()).toContain('YellowDog')
+    expect(wrapper.html()).toContain('YellowDog');
   });
 
   it('Loads the LogIn View', () => {
