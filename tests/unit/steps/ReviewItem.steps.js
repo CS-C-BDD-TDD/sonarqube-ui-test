@@ -29,8 +29,7 @@ defineFeature(feature, test => {
     objectType: "Indicator",
     fieldName: "Title",
     fieldValue: "I contain a SSN",
-    status: "New",
-    action: "Confirm Risk"
+    status: "New"
   };
 
   const givenIHaveDataForAnReviewItem = given => {
@@ -94,7 +93,7 @@ defineFeature(feature, test => {
 
     then("I should see an Action Combo box", () => {
       let select = wrapper.find("div.q-input-target.ellipsis");
-      expect(select.html()).toContain(TEST_DATA.value);
+      expect(select.html()).toContain("Redact Field");
     });
   });
 

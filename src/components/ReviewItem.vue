@@ -26,8 +26,7 @@ export default {
       objectType: { type: String, required: true },
       fieldName: { type: String, required: true },
       fieldValue: { type: String, required: true },
-      status: { type: String, required: true },
-      action: { type: String, required: true }
+      status: { type: String, required: true }
     },
     data: () => {
         return {
@@ -37,14 +36,11 @@ export default {
                 { label: 'Not PII', value: '2' },
                 { label: 'Redact Field', value: '3' }
             ],
-            select: null
+            select: 0
         } 
     },
     methods: {
         fieldValueUpdate: function(val, initVal) {
-            this.$emit("fieldValueUpdate", this.reviewItemData);
-        },
-        updateAction: function(val, initVal) {
             let eventData = {
                 stixId: this.stixId,
                 actionDate: this.actionDate,
@@ -55,11 +51,15 @@ export default {
                 groupAction: this.groupAction
             };
             eventData.fieldValue = this.reviewItemData.fieldValue;
+            this.$emit("fieldValueUpdate", eventData);
+        },
+        updateAction: function(val, initVal) {
             this.$emit("updateAction", { stixId: this.stixId, fieldName: this.fieldName, action: this.select });
         }
     },
     mounted: function() {
-    this.reviewItemData.fieldValue = this.fieldValue;
+        this.reviewItemData.fieldValue = this.fieldValue;
+        this.select = this.selectOptions[2].value;
     }
 }
 </script>
