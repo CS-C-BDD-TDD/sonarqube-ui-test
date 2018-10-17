@@ -7,8 +7,6 @@ import './styles/quasar.styl';
 import App from './App.vue';
 import router from './router';
 
-import store from './store';
-
 Vue.use(Quasar, {
   config: {}, iconSet,
 });
@@ -17,6 +15,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
-  render: h => h(App),
-  store,
+  render: h => h(App)
 }).$mount('#app');

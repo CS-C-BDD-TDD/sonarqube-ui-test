@@ -3,7 +3,7 @@
     title="Pending Messages"
     :data="tableData"
     :columns="columns"
-    row-key="id"
+    row-key="stixId"
   >
   <q-tr slot="body" slot-scope="props" :props="props">
     <q-td key="id" :props="props">{{ pendingList[0].stix_id }}</q-td>
@@ -65,7 +65,7 @@ export default {
     // separator: 'horizontal'
   }),
 
-  computed: {
+/*   computed: {
     pendingList() {
       return this.$store.state.pendingList;
     },
@@ -79,7 +79,7 @@ export default {
       this.$store.dispatch('getHRPending', Object.assign({}, this.input))
         .then(() => this.$router.push('/humanreview'));
     },
-  },
+  }, */
 
 };
 </script>
