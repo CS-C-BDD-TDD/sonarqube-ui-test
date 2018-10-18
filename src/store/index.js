@@ -31,8 +31,8 @@ export default new Vuex.Store({
           username: `${input.username}`,
           password: `${input.password}`,
         };
-  
-        axios.put('/api/v1/user', authCredentials, config).then(result => commit('updateToken', result.data))
+
+        axios.put(backendUrl+'/api/v1/user', authCredentials, config).then(result => commit('updateToken', result.data))
           .catch(console.error);
       },
     }
