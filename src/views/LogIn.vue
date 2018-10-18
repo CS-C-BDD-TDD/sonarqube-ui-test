@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'LogIn',
+  name: 'Login',
 
   data: () => {
     return {
@@ -43,7 +43,7 @@ export default {
 
   methods: {
     login: function() {
-      this.$emit("submitLogin", { username: this.username, password: this.password });
+      this.$emit("login", { username: this.username, password: this.password });
     }
   },
 };

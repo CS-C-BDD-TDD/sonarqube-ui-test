@@ -62,9 +62,9 @@ defineFeature(feature, test => {
     });
 
     then(/^the system sends the credentials$/, () => {
-      expect(wrapper.emitted("submitLogin")).toBeDefined();
-      expect(wrapper.emitted("submitLogin").length).toEqual(1);
-      expect(wrapper.emitted("submitLogin")[0][0]).toEqual(EXPECTED_CREDENTIALS);     
+      expect(wrapper.emitted("login")).toBeDefined();
+      expect(wrapper.emitted("login").length).toEqual(1);
+      expect(wrapper.emitted("login")[0][0]).toEqual(EXPECTED_CREDENTIALS);
     });
   });
 });

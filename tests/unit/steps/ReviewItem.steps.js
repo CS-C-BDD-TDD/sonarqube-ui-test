@@ -61,7 +61,7 @@ defineFeature(feature, test => {
     //   wrapper = mount(ReviewItem, propData);
     // });
 
-    then("I should see a Stix id", () => {
+    then("I should see a Stix Id", () => {
       let td = wrapper.find("td:nth-child(1)");
       expect(td.html()).toContain(TEST_DATA.stixId);
     });  
@@ -76,12 +76,12 @@ defineFeature(feature, test => {
       expect(td.html()).toContain(TEST_DATA.objectType);
     });
 
-    then("I should see a Field", () => {
+    then("I should see a Field Name", () => {
       let td = wrapper.find("td:nth-child(4)");
       expect(td.html()).toContain(TEST_DATA.fieldName);
     });
 
-    then("I should see a Value as a Popup Edit component", () => {
+    then("I should see a Field Value as a Popup Edit component", () => {
       let td = wrapper.find("td:nth-child(5)");
       expect(td.html()).toContain(TEST_DATA.fieldValue);
     });
