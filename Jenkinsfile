@@ -102,14 +102,14 @@ pipeline {
         stage('Twistlock Scan') {
             steps{
                 script {
-                    twistlockScan ca: '', cert: '', compliancePolicy: 'warn', dockerAddress: 'unix:///var/run/docker.sock', gracePeriodDays: 0, ignoreImageBuildTime: true, image: 'vue-app*', key: '', logLevel: 'true', policy: 'warn', requirePackageUpdate: false, timeout: 10
+                    twistlockScan ca: '', cert: '', compliancePolicy: 'warn', dockerAddress: 'unix:///var/run/docker.sock', gracePeriodDays: 0, ignoreImageBuildTime: true, image: '', key: '', logLevel: 'true', policy: 'warn', requirePackageUpdate: false, timeout: 10
                        }
                  }
         }
         stage ('Twistlock Publish') {
             steps{
                 script {
-            twistlockPublish ca: '', cert: '', dockerAddress: 'unix:///var/run/docker.sock', ignoreImageBuildTime: true, image: 'vue-app*', key: '', logLevel: 'true', timeout: 10
+            twistlockPublish ca: '', cert: '', dockerAddress: 'unix:///var/run/docker.sock', ignoreImageBuildTime: true, image: '', key: '', logLevel: 'true', timeout: 10
                        }
             }
         }
