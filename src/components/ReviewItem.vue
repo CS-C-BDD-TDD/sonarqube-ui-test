@@ -49,7 +49,7 @@ export default {
                 fieldName: this.fieldName,
                 fieldValue: this.reviewItemData.fieldValue,
                 status: this.status,
-                groupAction: this.groupAction
+                action: this.action
             };
             eventData.fieldValue = this.reviewItemData.fieldValue;
             this.$emit("fieldValueUpdate", eventData);
