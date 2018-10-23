@@ -49,7 +49,7 @@ export default {
   methods: {
     login() {
 //       this.$emit("login", { username: this.username, password: this.password });
-
+ 
       // Access the '$axios' client via the 'this' object and send the request. We will then
       // recieve a 'Promise' which contains the 'response' object from the Axios client.
       this.$axios.put('/api/v1/user', { username: this.username, password: this.password })
@@ -59,6 +59,7 @@ export default {
             console.log(JSON.stringify(response.data));
             this.$router.push({ name: 'humanreview', params: { token: this.token }});
           } else {
+            this.token = response.data;
             console.log(JSON.stringify(response.data));
             this.failedLogin = true;
           }
