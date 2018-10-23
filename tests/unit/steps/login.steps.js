@@ -6,6 +6,7 @@ import LogIn from "@/views/LogIn.vue";
 import iconSet from "quasar-framework/icons/fontawesome";
 import "quasar-extras/fontawesome";
 
+
 Vue.config.silent = true;
 
 const feature = loadFeature("tests/unit/features/Login.feature");
@@ -70,18 +71,30 @@ defineFeature(feature, test => {
   });
 
   test('Logging in calls REST API client', ({given, when, then}) => {
-    let $api = {};
+    let $axios = {};
     let $router = {};
     const USERNAME = 'User1';
     const PASSWORD = 'Pass1';
     const TOKEN = 'Random-0.7354678706053357';
 
-    given(/^a mock instance of the API client$/, () => {
-      $api.userPut = jest.fn((credentials, callback) => {
-        expect(credentials.username).toEqual(USERNAME);
-        expect(credentials.password).toEqual(PASSWORD);
-        callback(null, TOKEN, {});
-      })
+    given(/^a mock instance of Axios$/, () => {
+      /**
+       * Mock implementation of the 'put' method for the API client library
+       */
+      $axios.put = jest.fn((path, options) => {
+        expect(path).toEqual('/api/v1/user');
+        expect(options.username).toEqual(USERNAME);
+        expect(options.password).toEqual(PASSWORD);
+        let response = {
+          // 'data' is the response that was provided by the server
+          data: TOKEN,
+          // 'status' is the HTTP status code from the server response
+          status: 200,
+          // 'statusText' is the HTTP status message from the server response
+          statusText: 'OK'
+        };
+        return Promise.resolve(response);
+      });
     });
 
     given(/^a mock instance of the Vue router$/, ()=> {
@@ -91,8 +104,14 @@ defineFeature(feature, test => {
       })
     });
 
-    given(/^an instance of the LogIn component$/, () => {
-      wrapper = mount(LogIn, { localVue, mocks: { $api, $router } });
+    given(/^an instance of the LogIn component with our mocks injected$/, () => {
+      wrapper = mount(LogIn, {
+        localVue,
+        mocks: {    // Implement the mocks here!
+          $axios,
+          $router
+        }
+      });
     });
 
     when(/^I enter a username$/, () => {
@@ -115,14 +134,24 @@ defineFeature(feature, test => {
         expect(wrapper.vm.$data.password).toBe(PASSWORD);
     });
 
-    then(/^I expect that the userAuth method on the API client is called$/, async () => {
+    then(/^I expect that the axios client will be called with appropriate parameters$/, async () => {
       await wrapper.vm.$nextTick();
-      expect($api.userPut).toHaveBeenCalled();
+      expect(wrapper.vm.$data).toEqual(TEST_TOKEN);
+      expect($axios.put).toHaveBeenCalled();
+      // Check to see if the first parameter is the expected path
+      expect($axios.put.mock.calls[0][0]).toEqual('/api/v1/user');
+      // Check to see if the second parameter is the expected credentials.
+      expect($axios.put.mock.calls[0][1]).toEqual({ username: USERNAME, password: PASSWORD });
     });
 
-    then(/^I expect that the Vue router has been called to navigate away from the Login$/, async () => {
+    then('I expect that the user will have been navigated to the HumanReview page', async () => {
       await wrapper.vm.$nextTick();
       expect($router.push).toHaveBeenCalled();
+      expect($router.push).toBeCalledWith({ name: 'humanreview', params: { token: TEST_TOKEN } });
+    });
+
+    then('I expect that the failed login alert is not visible', () => {
+      expect(wrapper.vm.$data.failedLogin).toBeFalsy();
     });
   });
 });
