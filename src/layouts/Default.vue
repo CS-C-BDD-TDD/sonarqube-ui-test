@@ -13,7 +13,7 @@
       </q-toolbar>
     </q-layout-header>
 
-    <q-page-container>  
+    <q-page-container>
       <q-page class="flex flex-center bg-primary" >
         <router-view />
       </q-page>
@@ -22,9 +22,6 @@
 </template>
 
 <script>
-import {DefaultApi, AuthCredentials} from 'human_review_api_client';
-
-
 export default {
   name: 'LayoutDefault',
 };

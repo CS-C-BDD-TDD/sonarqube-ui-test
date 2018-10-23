@@ -136,7 +136,7 @@ defineFeature(feature, test => {
 
     then(/^I expect that the axios client will be called with appropriate parameters$/, async () => {
       await wrapper.vm.$nextTick();
-      expect(wrapper.vm.$data).toEqual(TEST_TOKEN);
+      expect(wrapper.vm.$data.token).toEqual(TOKEN);
       expect($axios.put).toHaveBeenCalled();
       // Check to see if the first parameter is the expected path
       expect($axios.put.mock.calls[0][0]).toEqual('/api/v1/user');
@@ -147,7 +147,7 @@ defineFeature(feature, test => {
     then('I expect that the user will have been navigated to the HumanReview page', async () => {
       await wrapper.vm.$nextTick();
       expect($router.push).toHaveBeenCalled();
-      expect($router.push).toBeCalledWith({ name: 'humanreview', params: { token: TEST_TOKEN } });
+      expect($router.push).toBeCalledWith({ name: 'humanreview', params: { token: TOKEN } });
     });
 
     then('I expect that the failed login alert is not visible', () => {

@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "human_review": "^1.0.1",
     "quasar": "0.0.18",
     "quasar-extras": "^2.0.4",
     "quasar-framework": "^0.17.17",

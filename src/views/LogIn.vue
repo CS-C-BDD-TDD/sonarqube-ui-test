@@ -34,8 +34,6 @@
 </style>
 
 <script>
-import HumanReview from 'human_review';   //Client API
-
 export default {
   name: 'Login',
 
@@ -49,31 +47,23 @@ export default {
   },
 
   methods: {
-    login: function() {
+    login() {
 //       this.$emit("login", { username: this.username, password: this.password });
-      let credentials = new HumanReview.AuthCredentials();
-      credentials.username = this.username;
-      credentials.password = this.password;
 
-      // Access the '$api' client via the 'this' object and send the request with a callback.
-      // The callback needs to be an ES6 arrow function (closure) so that 'this' is captured in the scope.
-      this.$api.userPut(credentials, (error, returnedToken, response) => {
-        if (error === null) {
-          // Success
-          // Tell the Vue Router to redirect to the humanreview page and pass the authentication token
-          // as a parameter
-          console.log('API called successfully. Returned data: ' + returnedToken);
-          this.$router.push({name: 'humanreview', params: { token: returnedToken }});
-          console.log('API called successfully. Returned data: ' + returnedToken);
-          this.token = returnedToken;
-        } else {
-          // Failure - Handle error
-          console.error(error);
-          this.failedLogin = true;
-        }
-      });
+      // Access the '$axios' client via the 'this' object and send the request. We will then
+      // recieve a 'Promise' which contains the 'response' object from the Axios client.
+      this.$axios.put('/api/v1/user', { username: this.username, password: this.password })
+        .then((response) => {
+          if (response.status === 200) {
+            this.token = response.data;
+            console.log(JSON.stringify(response.data));
+            this.$router.push({ name: 'humanreview', params: { token: this.token }});
+          } else {
+            console.log(JSON.stringify(response.data));
+            this.failedLogin = true;
+          }
+        });
     }
   },
 };
 </script>
-
