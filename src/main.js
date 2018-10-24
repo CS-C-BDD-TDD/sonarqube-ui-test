@@ -13,7 +13,7 @@ Vue.prototype.$axios = axios.create({
   timeout: 1000,
 });
 
-alert("made it here");
+//alert("made it here");
 
 Vue.use(Quasar, {
   config: {}, iconSet,
