@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Vue from 'vue';
 import Quasar from 'quasar';
 import iconSet from 'quasar-framework/icons/fontawesome';
@@ -7,7 +8,10 @@ import './styles/quasar.styl';
 import App from './App.vue';
 import router from './router';
 
-import store from './store';
+Vue.prototype.$axios = axios.create({
+  baseURL: window.apiBaseUrl,
+  timeout: 1000,
+});
 
 //alert("made it here");
 
@@ -19,6 +23,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
-  render: h => h(App),
-  store,
+  render: h => h(App)
 }).$mount('#app');
