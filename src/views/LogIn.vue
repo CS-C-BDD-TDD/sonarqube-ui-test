@@ -51,7 +51,7 @@ export default {
     },
 
     login() {
-      alert("made it here");
+      //alert("made it here");
       const url = '/api/v1/user';
       const requestBody = {
         username: this.username,
