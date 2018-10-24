@@ -1,8 +1,27 @@
-Feature: As a Human Review analyst
-I need to log in to Human Review page
-so that I can perform a review on STIX file
+Feature: As an analyst, I need to log in so that I can perform a review on STIX files
 
-Scenario: Login to the HR page 
- Given I am at the Login page
-   When  - I enter username and password 
-    Then I should be able to see "Pending Messages" 
+Scenario: Successful login
+  Given a mock instance of Axios
+  And   a mock instance of the Vue router
+  And   an instance of the LogIn component with our mocks injected
+  When  I enter a username
+  And   I enter a password
+  And   I click the SignIn button
+  Then  I expect the username value to be set correctly
+  And   I expect the password value to be set correctly
+  And   I expect that the axios client will be called with appropriate parameters
+  And   I expect that the user will have been navigated to the HumanReview page
+  And   I expect that the failed login alert is not visible
+
+  Scenario: Unsuccessful login
+  Given a mock instance of Axios
+  # And   a mock instance of the Vue router
+  And   an instance of the LogIn component with our mocks injected
+  When  I enter a username
+  And   I enter a password
+  And   I click the SignIn button
+  Then  I expect the username value to be set correctly
+  And   I expect the password value to be set correctly
+  And   I expect that the axios client will be called with appropriate parameters
+  And   I expect that the axios client will receive an invalid message
+  And   I expect that the failed login alert is visible
