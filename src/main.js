@@ -9,7 +9,7 @@ import router from './router';
 
 import store from './store';
 
-//alert("made it here");
+alert("made it here");
 
 Vue.use(Quasar, {
   config: {}, iconSet,
