@@ -132,6 +132,7 @@ defineFeature(feature, test => {
           data: MESSAGE,
           // 'status' is the HTTP status code from the server response
           status: 401,
+          statusText: 'UNAUTHORIZED'
         };
         return Promise.resolve(response);
       });
@@ -176,7 +177,6 @@ defineFeature(feature, test => {
 
     then(/^I expect that the axios client will be called with appropriate parameters$/, async () => {
       await wrapper.vm.$nextTick();
-      //expect(wrapper.vm.$data.token).toEqual(MESSAGE);
       expect($axios.put).toHaveBeenCalled();
       // Check to see if the first parameter is the expected path
       expect($axios.put.mock.calls[0][0]).toEqual('/api/v1/user');
@@ -186,7 +186,7 @@ defineFeature(feature, test => {
 
     then(/^I expect that the axios client will receive an invalid message$/, async () => {
       await wrapper.vm.$nextTick();
-      expect(wrapper.vm.$data.token).toEqual(MESSAGE);
+      expect(wrapper.vm.$data.errmsg).toEqual(MESSAGE);
     });
 
     then('I expect that the failed login alert is visible', () => {
